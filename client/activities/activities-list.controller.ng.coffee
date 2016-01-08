@@ -1,22 +1,30 @@
 'use strict'
 
 angular.module 'meetupApp'
-.controller 'ActivitiesListCtrl', ($scope, $meteor, currentUser) ->
+.controller 'ActivitiesListCtrl', ($scope, $state, currentUser) ->
   unless currentUser
     $state.go 'register'
     return
-  $scope.activities = $scope.$meteorCollection -> Activities.find {}, {sort: ownerName: -1}
-  $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images')
+  $scope.subscribe 'images'
+  # Each helper function should return a MongoDB Cursor
+  # and the helpers will expose it as a normal array to the context.
+  $scope.helpers
+    activities: -> Activities.find {}, {sort: ownerName: -1}
+    images: -> Images.find()
+
+  # $scope.activities = $scope.$meteorCollection -> Activities.find {}, {sort: ownerName: -1}
+  # $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images')
+
   $scope.newActivity = {}
   fileObj = null
   $scope.isUploaded = ->
     fileObj and fileObj.url and fileObj.url()
 
-  $meteor.autorun $scope, () ->
-    $scope.$meteorSubscribe('activities')
+  # $meteor.autorun $scope, () ->
+  #   $scope.$meteorSubscribe('activities')
 
-  $meteor.session 'activitiesCounter'
-  .bind $scope, 'page'
+  # $meteor.session 'activitiesCounter'
+  # .bind $scope, 'page'
 
   $scope.save = () ->
     if $scope.form.$valid
@@ -27,9 +35,9 @@ angular.module 'meetupApp'
         if newValue
           console.log 'image.url=', newValue
           $scope.newActivity.image = newValue
-          $scope.activities.save $scope.newActivity
+          Activities.insert $scope.newActivity
           $scope.newActivity = {}
           unwatchIt()
 
   $scope.remove = (activity) ->
-    $scope.activities.remove activity
+    Activities.remove activity._id
