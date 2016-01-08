@@ -1,0 +1,14 @@
+{
+  "generator-angular-meteor": {
+    "filters": {
+      "coffee": true,
+      "jade": true,
+      "stylus": true,
+      "pagination": false,
+      "framework": "material",
+      "bower": true,
+      "auth": true
+    },
+    "appname": "meetup"
+  }
+}

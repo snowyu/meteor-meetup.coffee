@@ -1,0 +1,19 @@
+.settings-list(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 Settings
+    form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+      p Add a setting
+      md-input-container
+        label Name
+        input(ng-model='newSetting.name', placeholder='Name')
+      input.md-button(type='submit', value='Add')
+
+    ul
+      li(ng-repeat='setting in settings')
+        p
+          a(href='/settings/{{setting._id}}') {{setting._id}}
+          button(ng-click='remove(setting)') &times;
+
+    p Total number of settings: {{settings.length}}
+  span(flex='')

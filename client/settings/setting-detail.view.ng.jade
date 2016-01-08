@@ -1,0 +1,18 @@
+.setting-detail(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 应用设置
+    form.md-whiteframe-z1(name='form', ng-submit='save()', layout-padding='')
+      md-input-container
+        input(ng-model='setting.title', placeholder='标题')
+      md-input-container
+        input(ng-model='setting.subtitle', placeholder='子标题')
+      md-input-container
+        input(type='number', ng-model='setting.qrCodeSize', placeholder='二维码尺寸')
+      md-input-container
+        md-checkbox(ng-model='setting.fetchEnabled') 是否开始活动
+      div(layout='row')
+        input.md-button(type='submit', value='Save')
+        md-button(ng-click='reset()') Reset
+        md-button(ng-href='/settings') Cancel
+  span(flex='')

@@ -1,0 +1,43 @@
+.activities-list
+  //span(flex='')
+  div(layout='row', ng-show='currentUser.username == "admin"')
+    h1.md-button.md-primary.md-raised(layout="column", ng-click="isAppendOpen = !isAppendOpen") 新增活动 {{activities.length}}
+    md-content(layout='column', id="frmAppendActivity", layout-fill, ng-show="isAppendOpen")
+      form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+        div(layout='row')
+          md-input-container(layout='column')
+            input(ng-model='newActivity.name', placeholder='名称')
+          span(flex='')
+          img.input.dropbox(layout='column',  ngf-thumbnail="ngfImage || '/img/thumbnail.jpg'", ngf-select="", ngf-pattern="'image/*'", ngf-resize="{width: 512, height: 512}", name="file", ngf-accept="'image/*'", ng-model='ngfImage')
+        div(layout='row')
+          md-input-container(layout='column', layout-fill)
+            input(ng-model='newActivity.description', placeholder='描述', md-maxlength="250")
+        div(layout='row')
+          md-input-container(layout='column', layout-fill)
+            input(ng-model='newActivity.answer', placeholder='答案')
+        div(layout='row')
+          span(flex='')
+          input.md-button.md-primary.md-raised(type='submit', value='Add', layout='column')
+
+  md-content(layout='row', layout-wrap="", layout-align="start" layout-xs="column" )
+    div(
+      ng-repeat='activity in activities'
+      flex="20", flex-sm="50", flex-xs="100", layout="column"
+    )
+      md-card(
+      )
+        img.md-card-image(
+          ngf-thumbnail="activity.image || '/img/thumbnail.jpg'"
+          ui-sref="activity-detail({activityId: activity._id})"
+        )
+        md-card-title
+          md-card-title-text
+            h2.md-headline
+              a(href='/activities/{{activity._id}}') {{activity.name}}
+              md-button.md-primary(ng-click='remove(activity)', ng-show='currentUser.username == "admin"') &times;
+        md-card-content(ng-show="activity.ownerName")
+            span 领取人:
+            span(ng-bind="activity.ownerName")
+        md-card-content
+          p {{activity.description}}
+

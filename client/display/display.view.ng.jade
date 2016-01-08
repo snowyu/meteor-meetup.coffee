@@ -1,0 +1,24 @@
+md-divider
+
+md-list
+  md-subheader
+    md-button.md-raised(ng-click="setFetchEnabled()", ng-show="currentUser.username=='admin' && !settings.fetchEnabled") 开始
+    md-button(ng-click="toggleRight()", ng-hide="isOpenRight()") Messages:{{messages.length}}
+  //md-virtual-repeat-container(id="messages-container")
+  md-list-item.md-3-line(ng-repeat="message in messages")
+    img.md-avatar(ng-src="{{getFace(message) || '/img/avatar/0.jpg'}}", alt="{{message.username}}")
+    div.md-list-item-text
+      h3 {{message.username}}
+      h5(am-time-ago="message.createdAt")
+      p(layout-wrap, style="word-wrap:break-word;", smilies="message.content||message.name")
+    md-divider
+
+md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id="navRight")
+  md-divider
+  md-toolbar.md-theme-light
+    h1.md-toolbar-tools
+      span Welcome to {{appName}}
+      md-button.md-raised(ui-sref="activities-list") 剩余活动:{{leftCount}}
+  md-content(layout-padding="")
+    qrcode(data="{{fetchUrl}}", href="{{fetchUrl}}", size="{{settings.qrCodeSize}}")
+    md-button.md-raised.md-primary(ng-click="toggleRight()") 关闭

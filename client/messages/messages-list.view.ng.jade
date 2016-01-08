@@ -1,0 +1,22 @@
+md-list
+  md-subheader
+    form(ng-submit='save()', name='frmSendMessage', novalidate='')
+      div(layout='row')
+        div(layout='column', flex='90')
+          md-input-container
+            input(id='txtMessage', md-autofocus="", ng-model='newMessage.content', placeholder='请在此输入您要发送的消息', md-maxlength="150")
+        div(layout='column')
+          input.md-button.md-raised.md-primary(type='submit', value='发送')
+    md-button.md-raised.md-primary(
+      ui-sref='activity-detail({activityId:currentUser.profile.activity})'
+      ng-show='currentUser.profile.activity'
+    ) 查看领取的活动
+  //md-virtual-repeat-container(id="messages-container")
+  md-list-item.md-3-line(ng-repeat="message in messages")
+    img.md-avatar(ng-src="{{getFace(message) || '/img/avatar/0.jpg'}}", alt="{{message.username}}")
+    div.md-list-item-text
+      h3 {{message.username}}
+      h5(am-time-ago="message.createdAt")
+      p.md-title(layout-wrap, style="word-wrap:break-word;", smilies="message.content||message.name")
+    md-divider
+

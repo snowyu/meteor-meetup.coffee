@@ -1,0 +1,13 @@
+.message-detail(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 Here are the details of the message
+    form.md-whiteframe-z1(name='form', ng-submit='save()', layout-padding='')
+      md-input-container
+        label Name
+        input(ng-model='message.content', placeholder='Name')
+      div(layout='row')
+        input.md-button(type='submit', value='Save')
+        md-button(ng-click='reset()') Reset
+        md-button(ng-href='/messages') Cancel
+  span(flex='')

@@ -1,0 +1,19 @@
+md-toolbar.toolbar(layout='row', layout-align='start center', layout-padding='')
+  .navbar-left(layout='row', layout-align='center center')
+    #blaze-template(name='loginButtons')
+    login-buttons
+    md-button.md-primary.md-raised(
+      ng-show='currentUser.username == "admin"'
+      ui-sref='display'
+    ) 显示
+    md-button.md-primary.md-raised(
+      ng-show='currentUser.username == "admin"'
+      ui-sref='activities-list'
+    ) 活动管理
+    md-button.md-primary.md-raised(
+      ng-show='currentUser.username == "admin"'
+      ui-sref='setting-detail'
+    ) 设置
+  span(flex='')
+  .navbar-right
+    h5(ui-sref='messages') {{appName}}

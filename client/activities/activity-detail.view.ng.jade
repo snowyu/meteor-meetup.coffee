@@ -1,0 +1,38 @@
+.activity-detail(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 活动详情
+
+    form.md-whiteframe-z1(ng-submit='save()', name='form', layout-padding='')
+      div(layout='row')
+        md-input-container(layout='column')
+          input(ng-model='activity.name', placeholder='名称')
+        span(flex='')
+        img.input.dropbox(
+          layout='column'
+          ng-readonly='currentUser.username != "admin"'
+          ngf-thumbnail="ngfImage || activity.image || '/img/thumbnail.jpg'"
+          ngf-select=""
+          ngf-drop=""
+          ngf-pattern="'image/*'"
+          ngf-resize="{width: 512, height: 512}"
+          ngf-accept="'image/*'"
+          name="file"
+          ng-model='ngfImage'
+        )
+      div(layout='row', ng-show="activity.ownerName")
+        md-input-container(layout='column')
+          input(ng-model='activity.ownerName', placeholder='领取人')
+        md-input-container(layout='column')
+          input(ng-model='owner.profile.phone', placeholder='电话')
+      div(layout='row')
+        md-input-container(layout='column', layout-fill)
+          input(ng-model='activity.description', placeholder='描述', md-maxlength="250")
+      div(layout='row', ng-show='currentUser.username == "admin"')
+        md-input-container(layout='column', layout-fill)
+          input(ng-model='activity.answer', placeholder='答案')
+      div(layout='row', ng-show='currentUser.username == "admin"')
+        input.md-button(type='submit', value='Save')
+        md-button(ng-click='reset()') Reset
+        md-button(ng-href='/activities') Cancel
+  span(flex='')
