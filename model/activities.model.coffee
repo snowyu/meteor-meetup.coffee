@@ -32,4 +32,6 @@ Activities.allow
       user = Meteor.user()
       userId = user.username == 'admin'
       #Unused.remove(activity._id) if userId
+      if userId and activity.ownedBy
+        Meteor.users.update activity.ownedBy, $set: 'profile.activity': null
     userId
