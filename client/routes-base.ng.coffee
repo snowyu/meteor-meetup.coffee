@@ -27,7 +27,8 @@ angular.module 'meetupApp'
     $rootScope.appName =  vTitle + '-' + vSubtitle #'2016年联会-物联利浪'
     return
 
-  unsubscribe = Meteor.subscribe 'settings', onReady:->
+  #unsubscribe = Meteor.subscribe 'settings', onReady:->
+  $rootScope.subscribe 'settings', angular.noop, onReady:->
     $rootScope.updateSetting()
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->
