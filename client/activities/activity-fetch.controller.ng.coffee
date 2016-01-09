@@ -14,7 +14,7 @@ angular.module 'meetupApp'
   # currentUser = Meteor.user() #unless currentUser # sometime the currentUser is not setting.
   # triggle subscribe if not
 
-  unsubscribe = Meteor.subscribe 'settings', onReady:->
+  $scope.subscribe 'settings', angular.noop, onReady:->
     console.log('ready settings')
 
     console.log 'a=', $scope.settings # where to wait for the collection sync from datbases?
@@ -38,7 +38,7 @@ angular.module 'meetupApp'
     if fetchEnabled
       unless currentUser.profile and currentUser.profile.activity
         # workaround the minimongo bug: no supported for $eq on mongodb 3
-        activity = Activities.find(ownedBy: $not: $ne: null).fetch()
+        activity = Activities.find(enabled:true, ownedBy: $not: $ne: null).fetch()
         #activity = Activities.find().fetch()
         i = activity.length
         console.log 'actCount', i, activity
