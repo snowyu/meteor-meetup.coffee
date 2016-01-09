@@ -3,7 +3,8 @@ md-divider
 md-list
   md-subheader
     md-button.md-raised(ng-click="setFetchEnabled()", ng-show="currentUser.username=='admin' && !settings.fetchEnabled") 开始
-    md-button(ng-click="toggleRight()", ng-hide="isOpenRight()") Messages:{{messages.length}}
+    md-button.md-raised(ng-click="toggleRight()", ng-hide="isOpenRight()") 显示二维码
+    span Messages:{{messages.length}}
   //md-virtual-repeat-container(id="messages-container")
   md-list-item.md-3-line(ng-repeat="message in messages")
     img.md-avatar(ng-src="{{getFace(message) || '/img/avatar/0.jpg'}}", alt="{{message.username}}")
