@@ -135,3 +135,6 @@ https://www.codetutorial.io/meteor-server-file-upload/ 这编教程不错
 
 http://ngmodules.org/ : 各种angular 指令模块。
 http://www.angular-meteor.com/tutorials/socially/angular1/bootstrapping
+
+```javascript
+angular.element(e).injector().get('serviceName')
