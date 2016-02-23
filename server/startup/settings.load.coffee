@@ -6,8 +6,8 @@ Meteor.startup ->
     settings = [
       {
         '_id': 'main'
-        'title': '重庆IoT新年联会'
-        'subtitle': '物联利浪'
+        'title': 'IoT新年联会'
+        'subtitle': '物联公司'
         'qrCodeSize': 512
         'fetchEnabled': false
       }
