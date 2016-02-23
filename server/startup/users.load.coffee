@@ -6,7 +6,8 @@ Meteor.startup ->
   if Users.find().count() == 0
     users = [
       {_id: 'sys', username: '【系统】', password: 'Z1jKa23A!#', profile: face: '/img/avatar/staff_login.png'}
-      {_id: 'admin', username: 'admin', password: 'A6d4m3i2n1#', profile: face: '/img/avatar/admin-girl.png'}
+      {_id: 'admin', username: 'admin', password: '123456Q', profile: face: '/img/avatar/admin-girl.png'}
+      # {_id: 'admin', username: 'admin', password: 'A6d4m3i2n1#', profile: face: '/img/avatar/admin-girl.png'}
     ]
     users.forEach (user) ->
       #Accounts.createUser user
