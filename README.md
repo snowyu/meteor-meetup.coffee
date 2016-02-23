@@ -138,3 +138,5 @@ http://www.angular-meteor.com/tutorials/socially/angular1/bootstrapping
 
 ```javascript
 angular.element(e).injector().get('serviceName')
+```
+
